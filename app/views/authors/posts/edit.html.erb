@@ -11,37 +11,59 @@
 
     <div class="col-mb-9">
         <div class="mb-3">
-            <%= form_with(model: [@post, @paragraph]) do |form| %>
+            <%= form_with(model: [@post, @element], html: {class: 'float-left mr-1'}) do |form| %>
                 <%= form.hidden_field :element_type, value: 'paragraph' %>
-                <%= form.submit "Paragraph", class: 'btn btn-primary' %>
+                <%= form.submit "Paragraph", class: 'btn btn-dark' %>
+            <% end %>
+            <%= form_with(model: [@post, @element]) do |form| %>
+                <%= form.hidden_field :element_type, value: 'image' %>
+                <%= form.submit "Image", class: 'btn btn-dark' %>
             <% end %>
         </div>
         <div class="card">
             <div class="card-body pt-4">
                 <% @post.elements.each do |element| %>
                     <% if element.persisted? %>
-                        <div class="mb-4 p-3 paragraph" >
-                            <div class='paragraph-content'>
-                                <% if element.content.present? %>
-                                    <%= element.content %>
-                                <% else %>
-                                    Click to add content.
-                                 <% end %>    
-                                
-                            </div>
+                        <% if element.paragraph? %>
+                            <div class="mb-4 p-3 paragraph" >
+                                <div class='paragraph-content'>
+                                    <% if element.content.present? %>
+                                        <%= element.content %>
+                                    <% else %>
+                                        Click to add content.
+                                    <% end %>    
+                                    
+                                </div>
 
-                            <div class="paragraph-form d-none">
+                                <div class="paragraph-form d-none">
+                                    <%= form_with(model: [@post, element]) do |form| %>
+                                        <%= form.rich_text_area :content %>
+                                        <div class="mt-3">
+                                            <%= form.submit "Save", class: 'btn btn-primary' %>
+                                            <a href="#" class='cancel btn btn-secondary'>Cancel</a>
+                                        </div>
+
+                                    <% end %>
+                                </div>
+
+                            </div>
+                        <% elsif element.image? %>
+
+                            <div class="image">
+                                <% if element.image.present? %>
+                                <%= image_tag(element.image) %>
+                            <% else %>
                                 <%= form_with(model: [@post, element]) do |form| %>
-                                    <%= form.rich_text_area :content %>
+                                    <%= form.file_field :image %>
                                     <div class="mt-3">
                                         <%= form.submit "Save", class: 'btn btn-primary' %>
                                         <a href="#" class='cancel btn btn-secondary'>Cancel</a>
                                     </div>
-
                                 <% end %>
+                              <% end %>
                             </div>
+                        <%end%>
 
-                        </div>
                     <% end %>
                 <% end %>
             </div>
