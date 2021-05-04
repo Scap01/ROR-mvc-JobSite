@@ -1,14 +1,10 @@
 module Authors
  class PostsController < AuthorsController
-    before_action :set_post, only: [:show, :edit, :update, :destroy]
+    before_action :set_post, only: [:edit, :update, :destroy]
 
     # GET /posts
     def index
       @posts = current_author.posts
-    end
-
-    # GET /posts/1
-    def show
     end
 
     # GET /posts/new
@@ -18,6 +14,7 @@ module Authors
 
     # GET /posts/1/edit
     def edit
+      @paragraph = @post.elements.build(element_type: 'paragraph')
     end
 
     # POST /posts

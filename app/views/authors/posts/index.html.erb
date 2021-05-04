@@ -1,7 +1,21 @@
 <p id="notice"><%= notice %></p>
+<h4 class="d-flex justify-content-between mb-4"> 
+<span>Post</span>
+<%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+</h4>
 
-<h1>Posts</h1>
+<% @posts.each do |post| %>
+  <%= link_to edit_post_path(post), class: 'test-decoration-none' do %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title mb-1 text-dark"><%= post.title %></h5>
+      <p class="text-secondary mb-0"><%= post.description %></p>
+    </div>
 
+  </div>
+  <% end %>
+<% end %>
+<!-- 
 <table>
   <thead>
     <tr>
@@ -32,4 +46,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+-->
