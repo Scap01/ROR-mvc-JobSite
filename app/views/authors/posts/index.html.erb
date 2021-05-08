@@ -5,10 +5,19 @@
 
 <% @posts.each do |post| %>
   <%= link_to edit_post_path(post), class: 'test-decoration-none' do %>
-  <div class="card mb-3">
+  <div class="card mb-3 post-card">
     <div class="card-body">
-      <h5 class="card-title mb-1 text-dark"><%= post.title %></h5>
-      <p class="text-secondary mb-0"><%= post.description %></p>
+      <div class="row">
+        <div class="col-md-2">
+          <% if post.header_image.present? %>
+          <div class="header-img" style="background-image: url(<%= url_for(post.header_image) %>);"></div>
+          <% end %>
+        </div> 
+        <div class="col-md-10">
+          <h5 class="card-title mb-1 text-dark"><%= post.title %></h5>
+          <p class="text-secondary mb-0"><%= post.description %></p>
+        </div>
+      </div>
     </div>
 
   </div>

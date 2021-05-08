@@ -1,11 +1,26 @@
 <div class="row">
     <div class="col-md-3">
-        <%= link_to 'Back', posts_path, class: 'btn btn-secondary mb-3' %>
+        <%= link_to 'Back', posts_path, class: 'btn btn-dark mb-3' %>
         <div class="card">
+
+        <div class="card-header">
+            <h6 class="card-title mb-0">Editing Post</h6>
+        </div>
             <div class="card-body">
-                <h4 class="card-title">Editing Post</h4>
+                
                 <%= render 'form', post: @post %>
             </div>
+        <div class="card-footer">
+            <% if @post.published? %>
+                <a href="#" class="btn btn-secondary btn-block"
+                    data-reflex='click->PublisherReflex#unpublish'
+                    data-post-id='<%= @post.id %>'>Unpublish</a>
+            <% else %>
+                <a href="#" class="btn btn-dark btn-block" 
+                    data-reflex='click->PublisherReflex#publish'
+                    data-post-id='<%= @post.id %>'>Publish</a>
+            <% end %>
+        </div>
         </div>
     </div>
 
@@ -13,15 +28,33 @@
         <div class="mb-3">
             <%= form_with(model: [@post, @element], html: {class: 'float-left mr-1'}) do |form| %>
                 <%= form.hidden_field :element_type, value: 'paragraph' %>
-                <%= form.submit "Paragraph", class: 'btn btn-dark' %>
+                <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
+                    <i class="fas fa-paragraph"></i>
+                <% end %>
             <% end %>
             <%= form_with(model: [@post, @element]) do |form| %>
                 <%= form.hidden_field :element_type, value: 'image' %>
-                <%= form.submit "Image", class: 'btn btn-dark' %>
+                <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
+                    <i class="fas fa-image"></i>
+                <% end %>
+                
             <% end %>
         </div>
-        <div class="card">
-            <div class="card-body pt-4">
+        <div class="card" style="width: 52rem;">
+            <div class="card-header">
+                <% if @post.published? %>
+                    <span class="badge badge-primary text-left mr-1">
+                        Published
+                    </span>
+                <%= time_ago_in_words(@post.published_at) %> ago
+                <% else %>
+                <span class="badge badge-secondary text-left mr-1">
+                        Unpublished
+                    </span>
+                <% end %>
+            </div>
+            <div class="card-body pt-5">
+
                 <% @post.elements.each do |element| %>
                     <% if element.persisted? %>
                         <% if element.paragraph? %>
@@ -54,9 +87,12 @@
 
                             <div class="mb-4 p-3 image">
                                 <% if element.image.present? %>
-                                <div><%= image_tag(element.image) %></div>
                                 
-                                <%= link_to 'Delete', post_element_path(@post, element), method: :delete , class: 'btn btn-danger mt-2 float-right', data:{ confirm: "Are you sure"} %>
+                                    <%= link_to post_element_path(@post, element), method: :delete , class: 'delete-btn btn btn-danger mt-2 float-right', data:{ confirm: "Are you sure"} do  %>
+                                        <i class="fas fa-times"></i>
+                                    <% end %>
+                                    <%= image_tag(element.image) %>
+
                             <% else %>
                                 <%= form_with(model: [@post, element]) do |form| %>
                                     <%= form.file_field :image %>
