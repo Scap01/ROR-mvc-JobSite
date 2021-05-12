@@ -1,5 +1,5 @@
 module Authors
- class PostsController < AuthorsController
+  class PostsController < AuthorsController
     before_action :set_post, only: [:edit, :update, :destroy]
 
     # GET /posts
@@ -15,7 +15,6 @@ module Authors
     # GET /posts/1/edit
     def edit
       @element = @post.elements.build
-      
     end
 
     # POST /posts
@@ -25,7 +24,7 @@ module Authors
       if @post.save
         redirect_to edit_post_path(@post)
       else
-        render :new
+        broadcast_errors @post, post_params
       end
     end
 
@@ -34,7 +33,7 @@ module Authors
       if @post.update(post_params)
         redirect_to edit_post_path(@post)
       else
-        render :edit
+        broadcast_errors @post, post_params
       end
     end
 
@@ -45,14 +44,14 @@ module Authors
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_post
-        @post = current_author.posts.find(params[:id])
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_post
+      @post = current_author.posts.friendly.find(params[:id])
+    end
 
-      # Only allow a list of trusted parameters through.
-      def post_params
-        params.require(:post).permit(:title, :description, :header_image)
-      end
+    # Only allow a trusted parameter "white list" through.
+    def post_params
+      params.require(:post).permit(:title, :description, :header_image)
+    end
   end
 end

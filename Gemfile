@@ -24,6 +24,8 @@ gem 'turbolinks', '~> 5'
 
 gem 'devise'
 
+gem 'friendly_id', git: 'https://github.com/norman/friendly_id'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -55,3 +57,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "stimulus_reflex", "~> 3.4"
+
+gem "optimism", "~> 0.4.2"

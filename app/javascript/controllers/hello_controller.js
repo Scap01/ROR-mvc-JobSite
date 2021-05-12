@@ -7,12 +7,5 @@
 //   <h1 data-target="hello.output"></h1>
 // </div>
 
-import { Controller } from "stimulus"
+// hello_controller.js
 
-export default class extends Controller {
-  static targets = [ "output" ]
-
-  connect() {
-    this.outputTarget.textContent = 'Hello, Stimulus!'
-  }
-}
