@@ -94,7 +94,7 @@
                         <% end %>
                         <%= image_tag(element.image) %>
                       <% else %>
-                        <%= form_with(model: [@post, element]) do |form| %>
+                        <%= form_with(model: [@post, element],local: false) do |form| %>
                           <%= form.file_field :image %>
                           <div class="mt-3">
                             <%= form.submit "Save", class: 'btn btn-primary' %>
