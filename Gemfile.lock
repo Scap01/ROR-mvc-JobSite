@@ -108,6 +108,10 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.3-x64-mingw32)
       racc (~> 1.4)
+    optimism (0.4.2)
+      cable_ready (>= 4.4.6)
+      rack (~> 2.0)
+      rails (>= 5.2)
     orm_adapter (0.5.0)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -227,6 +231,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  optimism (~> 0.4.2)
   pry-rails
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

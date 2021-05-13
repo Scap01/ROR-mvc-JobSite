@@ -1,40 +1,29 @@
-<%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with(model: post,local: false) do |form| %>
   <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title, class: 'form-control' %>
+    <%= form.error_for :title, class: 'text-danger' %>
   </div>
 
   <div class="form-group">
     <%= form.label :description %>
     <%= form.text_area :description, class: 'form-control' %>
+    <%= form.error_for :description, class: 'text-danger' %>
   </div>
 
   <div class="form-group">
-  <%= form.label :header_image %>
-  <%= form.file_field :header_image %>
-  <div class="mt-1">
-    <small>Current image:</small>
-    <% if post.header_image.present? %>
-      <%= image_tag(post.header_image, width: '100%') %>
-    <% end %>
+    <%= form.label :header_image %>
+    <%= form.file_field :header_image %>
+    <div class="mt-1">
+      <% if post.header_image.present? %>
+        <small>Current image:</small>
+        <%= image_tag(post.header_image, width: '100%') %>
+      <% end%>
+    </div>
   </div>
 
-</div>
-
-  <div class="form-group">
+  <div class="actions">
     <%= form.submit class: 'btn btn-primary btn-block' %>
   </div>
 <% end %>
+
