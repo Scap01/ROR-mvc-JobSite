@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
 .authors {
     .paragraph {
       transition: background-color 0.5s ease;
@@ -16,7 +19,7 @@
         right: calc(10% + 38px);
         opacity: 0.7;
         &:hover {
-          opacity: 1;
+          opacity: 100;
         }
       }
     }
@@ -32,5 +35,231 @@
       list-style: none;
       padding-left: 0;
     }
+  }
+  
+.registration{
+  
+  
+  
+  *,*:before,*:after{box-sizing:border-box}
+  
+  .container{
+    overflow:hidden;
+    
+    &:hover,&:active{
+      .top, .bottom{
+        &:before, &:after{
+          margin-left: 300px;
+          transform-origin: -300px 50%;
+          transition-delay:0s;
+        }
+      }
+      
+      .center{
+        opacity:1;
+        transition-delay:0.2s;
+      }
+    }
+  }
+  
+  .top, .bottom{
+    &:before, &:after{
+      content:'';
+      display:block;
+      position:absolute;
+      width:200vmax;
+      height:200vmax;
+      top:50%;left:50%;
+      margin-top:-100vmax;
+      transform-origin: 0 50%;
+      transition:all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+      z-index:10;
+      opacity:0.65;
+      transition-delay:0.2s;
+    }
+  }
+  
+  .top{
+    &:before{transform:rotate(45deg);background:#e46569;}
+    &:after{transform:rotate(135deg);background:#ecaf81;}
+  }
+  
+  .bottom{
+    &:before{transform:rotate(-45deg);background:#60b8d4;}
+    &:after{transform:rotate(-135deg);background:#3745b5;}
+  }
+  
+  .center{
+    position:absolute;
+    width:400px;
+    height:400px;
+    top:50%;left:50%;
+    margin-left:-200px;
+    margin-top:-200px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:30px;
+    opacity:0;
+    transition:all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+    transition-delay:0s;
+    color:#333;
+    
+    input{
+      width:100%;
+      padding:15px;
+      margin:5px;
+      border-radius:1px;
+      border:1px solid #ccc;
+      font-family:inherit;
+    }
+  }
+  }
+
+  .bg{
+
+
+    .context {
+      width: 100%;
+      
+      top:50vh;
+      
+  }
+  
+  .context h1{
+      text-align: center;
+      color: #fff;
+      font-size: 50px;
+  }
+  
+  
+  .area{
+      background: #4e54c8;  
+      background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+      width: 100%;
+      height:100%;
+      
+     
+  }
+  
+  .circles{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: flex;
+  }
+  
+  .circles li{
+      position: absolute;
+      display: block;
+      list-style: none;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      animation: animate 25s linear infinite;
+      bottom: -150px;
+      
+  }
+  
+  .circles li:nth-child(1){
+      left: 25%;
+      width: 80px;
+      height: 80px;
+      animation-delay: 0s;
+  }
+  
+  
+  .circles li:nth-child(2){
+      left: 10%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 0s;
+      animation-duration: 3s;
+  }
+  
+  .circles li:nth-child(3){
+      left: 70%;
+      width: 20px;
+      height: 20px;
+      animation-delay: s;
+  }
+  
+  .circles li:nth-child(4){
+      left: 40%;
+      width: 60px;
+      height: 60px;
+      animation-delay: 0s;
+      animation-duration: 6s;
+  }
+  
+  .circles li:nth-child(5){
+      left: 65%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 0s;
+  }
+  
+  .circles li:nth-child(6){
+      left: 75%;
+      width: 110px;
+      height: 110px;
+      animation-delay: 0s;
+  }
+  
+  .circles li:nth-child(7){
+      left: 35%;
+      width: 150px;
+      height: 150px;
+      animation-delay: 0s;
+  }
+  
+  .circles li:nth-child(8){
+      left: 50%;
+      width: 25px;
+      height: 25px;
+      animation-delay: 0s;
+      animation-duration: 7s;
+  }
+  
+  .circles li:nth-child(9){
+      left: 20%;
+      width: 15px;
+      height: 15px;
+      animation-delay: 0s;
+      animation-duration: 7s;
+  }
+  
+  .circles li:nth-child(10){
+      left: 85%;
+      width: 150px;
+      height: 150px;
+      animation-delay: 0s;
+      animation-duration: 11s;
+  }
+  
+  
+  
+  @keyframes animate {
+  
+      0%{
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+          border-radius: 0;
+      }
+       50%{
+          transform: translateY(-500px) rotate(720deg);
+          opacity: 0;
+          border-radius: 50%;
+      } 
+      100%{
+          transform: translateY(0px) rotate(-360deg);
+          opacity: 1;
+          border-radius: 50px;
+      }
+  
+  }
   }
   
